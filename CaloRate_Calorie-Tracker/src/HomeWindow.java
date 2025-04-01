@@ -4,6 +4,7 @@ public class HomeWindow extends Window {
     void windowInterface() {
         windowTitle = "Home";
         super.windowInterface();
+        
     }
 
     @Override
