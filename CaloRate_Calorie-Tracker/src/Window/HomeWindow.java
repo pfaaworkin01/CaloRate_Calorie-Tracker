@@ -1,5 +1,7 @@
 package Window;
 
+import AccessControl.Register;
+
 import static Global.Global.YELLOW_TEXT;
 import static Global.Global.printCentered;
 
@@ -32,7 +34,8 @@ public class HomeWindow extends Window {
 
             switch(selection) {
                 case 1:
-                    //register;
+                    Register register = new Register();
+                    register.register();
                     break;
                 case 2:
                     //login;
