@@ -1,3 +1,5 @@
+package Window;
+
 import static Global.Global.YELLOW_TEXT;
 import static Global.Global.printCentered;
 
@@ -12,7 +14,7 @@ public class HomeWindow extends Window {
     }
 
     @Override
-    void windowLogic() {
+    public void windowLogic() {
         numberOfWindowOptions = 3;
         super.windowLogic();
 

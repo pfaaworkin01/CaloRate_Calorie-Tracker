@@ -1,3 +1,5 @@
+package Window;
+
 import java.util.Scanner;
 
 import static Global.Global.*;
