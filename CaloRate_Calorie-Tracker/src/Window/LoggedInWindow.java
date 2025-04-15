@@ -8,7 +8,7 @@ public class LoggedInWindow extends Window {
     void windowInterface() {
         windowTitle = "Logged In as \"" + LOGGED_IN_USERNAME + "\"";
         numberOfWindowOptions = 3;
-        windowOptionTexts = "Update User Data:Calculate Calorie:Go Back";
+        windowOptionTexts = "User Data:Calculate Calorie:Go Back";
         super.windowInterface();
     }
 
@@ -33,7 +33,8 @@ public class LoggedInWindow extends Window {
             switch (selection) {
                 case 1:
                     System.out.println();
-                    printCentered("Updating User Data...");
+                    UserDataManipulationWindow userDataManipulationWindow = new UserDataManipulationWindow();
+                    userDataManipulationWindow.windowLogic();
                     break;
                 case 2:
                     System.out.println();
