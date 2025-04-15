@@ -26,6 +26,38 @@ public class CredentialManager {
 
     }
 
+    public void loadCredentials(String username, String password) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
+            String line;
+            boolean found = false;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (username.equals(parts[0])) {
+                    String salt = parts[1];
+                    String storedHash = parts[2];
+                    if (checkPassword(password, salt, storedHash)) {
+                        found = true;
+                        AUTHENTICATED = true;
+                        System.out.println();
+                        printCentered("!!!  Logged in Successfully  !!!", GREEN_TEXT);
+                        LOGGED_IN_USERNAME = username;
+                        waitForAnyKey();
+                        break;
+                    }
+                }
+            }
+
+            if (!found) {
+                AUTHENTICATED = false;
+                printCentered("Invalid Username or Password. Try Again", YELLOW_TEXT);
+                waitForAnyKey();
+            }
+        } catch (IOException e) {
+            printCentered("Error Logging In", RED_TEXT);
+        }
+    }
+
     public boolean checkUsernameAvailability(String username) {
         boolean available = true;
 

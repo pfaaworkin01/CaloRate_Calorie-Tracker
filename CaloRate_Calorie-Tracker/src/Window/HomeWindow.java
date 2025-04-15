@@ -1,5 +1,6 @@
 package Window;
 
+import AccessControl.Login;
 import AccessControl.Register;
 
 import static Global.Global.YELLOW_TEXT;
@@ -18,13 +19,14 @@ public class HomeWindow extends Window {
     @Override
     public void windowLogic() {
         numberOfWindowOptions = 3;
-        super.windowLogic();
 
         while(!quitWindow) {
             System.out.println();
-            int terminalWidth = 149;
-            int padding = (terminalWidth - "Select an option: ".length()) / 2;
-            System.out.print(" ".repeat(padding) + "Select an option: ");
+            super.windowLogic();
+
+            System.out.println();
+            printCentered("Select an option: ");
+
             while(!scanner.hasNextInt()) {
                 printCentered("Invalid input! Please enter a number.", YELLOW_TEXT);
                 scanner.nextLine();
@@ -38,7 +40,8 @@ public class HomeWindow extends Window {
                     register.register();
                     break;
                 case 2:
-                    //login;
+                    Login login = new Login();
+                    login.login();
                     break;
                 case 3:
                     quitWindow = true;

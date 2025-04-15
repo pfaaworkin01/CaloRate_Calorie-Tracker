@@ -19,7 +19,6 @@ public class Register {
             while (!password.isEmpty()) {
                 System.out.println();
                 printCentered("Are you sure you want to register as '" + username + "'? (Y/N): ");
-                System.out.print("Are you sure you want to register as '" + username + "'? (Y/N): ");
                 String confirmRegistration = scanner.nextLine();
                 if (confirmRegistration.equalsIgnoreCase("N")) {
                     System.out.println();
