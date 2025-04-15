@@ -7,7 +7,7 @@ public class UserDataManager {
 
     private static final String USER_DATA = "User_Data.txt";
 
-    public void saveUserData(String username, String gender, String weight, String height, String age, String activityLevel, String goal) {
+    public void saveUserData(String username, String gender, String weight, String height, String age, String activityLevel, String goal, String BMR) {
         File file = new File(USER_DATA);
         try {
             if (!file.exists()) {
@@ -35,7 +35,7 @@ public class UserDataManager {
                     }
                 }
 
-                writer.write(username + ":" + gender + ":" + weight + ":" + height + ":" + age + ":" + activityLevel + ":" + goal + "\n");
+                writer.write(username + ":" + gender + ":" + weight + ":" + height + ":" + age + ":" + activityLevel + ":" + goal + ":" + BMR + "\n");
 
             }
         } catch (IOException e) {
@@ -53,19 +53,20 @@ public class UserDataManager {
 
                 if (parts[0].equals(LOGGED_IN_USERNAME)) {
                     dataFound = true;
-                    if (parts.length == 7) {
+                    if (parts.length == 8) {
                         System.out.println();
                         System.out.println("Your Data:");
-                        System.out.println("+----------------+----------------+");
-                        System.out.printf("| %-14s | %-14s |\n", "Field", "Value");
-                        System.out.println("+----------------+----------------+");
-                        System.out.printf("| %-14s | %-14s |\n", "Gender", parts[1]);
-                        System.out.printf("| %-14s | %-14s |\n", "Weight", parts[2] + " kg");
-                        System.out.printf("| %-14s | %-14s |\n", "Height", parts[3] + " cm");
-                        System.out.printf("| %-14s | %-14s |\n", "Age", parts[4] + " years");
-                        System.out.printf("| %-14s | %-14s |\n", "Activity Level", parts[5]);
-                        System.out.printf("| %-14s | %-14s |\n", "Goal", parts[6]);
-                        System.out.println("+----------------+----------------+");
+                        System.out.println("+----------------------+----------------------+");
+                        System.out.printf("| %-20s | %-20s |\n", "Field", "Value");
+                        System.out.println("+----------------------+----------------------+");
+                        System.out.printf("| %-20s | %-20s |\n", "Gender", parts[1]);
+                        System.out.printf("| %-20s | %-20s |\n", "Weight", parts[2] + " kg");
+                        System.out.printf("| %-20s | %-20s |\n", "Height", parts[3] + " cm");
+                        System.out.printf("| %-20s | %-20s |\n", "Age", parts[4] + " years");
+                        System.out.printf("| %-20s | %-20s |\n", "Activity Level", parts[5]);
+                        System.out.printf("| %-20s | %-20s |\n", "Goal", parts[6]);
+                        System.out.printf("| %-20s | %-20s |\n", "BMR", parts[7] + " kcal/day");
+                        System.out.println("+----------------------+----------------------+");
                     } else {
                         printCentered("Data format is invalid. Please update your data.", YELLOW_TEXT);
                     }
@@ -80,5 +81,18 @@ public class UserDataManager {
             printCentered("Error reading user data. Please try again.", RED_TEXT);
         }
         waitForAnyKey();
+    }
+
+    public double calculateBMR(String gender, String weight, String height, String age) {
+        double BMR = 0.00;
+
+        if(gender.equals("M")) {
+            BMR = 88.362 + (13.397 * Double.parseDouble(weight)) + (4.799 * Double.parseDouble(height)) - (5.677 * Double.parseDouble(age));
+        }
+        else if(gender.equals("F")) {
+            BMR = 447.593 + (9.247 * Double.parseDouble(weight)) + (3.098 * Double.parseDouble(height)) - (4.330 * Double.parseDouble(age));
+        }
+
+        return Double.parseDouble(String.format("%.2f", BMR));
     }
 }

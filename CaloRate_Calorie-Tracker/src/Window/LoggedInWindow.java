@@ -33,7 +33,7 @@ public class LoggedInWindow extends Window {
             switch (selection) {
                 case 1:
                     System.out.println();
-                    UserDataManipulationWindow userDataManipulationWindow = new UserDataManipulationWindow();
+                    UserDataWindow userDataManipulationWindow = new UserDataWindow();
                     userDataManipulationWindow.windowLogic();
                     break;
                 case 2:

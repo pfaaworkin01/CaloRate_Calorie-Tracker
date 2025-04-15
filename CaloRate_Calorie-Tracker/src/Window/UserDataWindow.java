@@ -4,7 +4,7 @@ import User.UserDataManager;
 
 import static Global.Global.*;
 
-public class UserDataManipulationWindow extends Window {
+public class UserDataWindow extends Window {
 
     private final UserDataManager userDataManager = new UserDataManager();
 
@@ -91,7 +91,9 @@ public class UserDataManipulationWindow extends Window {
 
         String goal = getInput("Enter your goal (M/G/L): ", "M", "G", "L");
 
-        userDataManager.saveUserData(LOGGED_IN_USERNAME, gender, weight, height, age, activityLevel, goal);
+        String BMR = Double.toString(userDataManager.calculateBMR(gender, weight, height, age));
+
+        userDataManager.saveUserData(LOGGED_IN_USERNAME, gender, weight, height, age, activityLevel, goal, BMR);
 
         System.out.println();
         printCentered("User data updated successfully!", GREEN_TEXT);
