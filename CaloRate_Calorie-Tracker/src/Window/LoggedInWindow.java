@@ -1,17 +1,14 @@
 package Window;
 
-import AccessControl.Login;
-import AccessControl.Register;
-
 import static Global.Global.*;
 
-public class HomeWindow extends Window {
+public class LoggedInWindow extends Window {
 
     @Override
     void windowInterface() {
-        windowTitle = "Home";
+        windowTitle = "Logged In as \"" + LOGGED_IN_USERNAME + "\"";
         numberOfWindowOptions = 3;
-        windowOptionTexts = "Register:Login:Quit";
+        windowOptionTexts = "Update User Data:Calculate Calorie:Go Back";
         super.windowInterface();
     }
 
@@ -19,32 +16,28 @@ public class HomeWindow extends Window {
     public void windowLogic() {
         numberOfWindowOptions = 3;
 
-        while(!quitWindow) {
+        while (!quitWindow) {
             System.out.println();
             super.windowLogic();
 
             System.out.println();
             printCentered("Select an option: ");
 
-            while(!scanner.hasNextInt()) {
+            while (!scanner.hasNextInt()) {
                 printCentered("Invalid input! Please enter a number.", YELLOW_TEXT);
                 scanner.nextLine();
             }
             selection = scanner.nextInt();
             scanner.nextLine();
 
-            switch(selection) {
+            switch (selection) {
                 case 1:
-                    Register register = new Register();
-                    register.register();
+                    System.out.println();
+                    printCentered("Updating User Data...");
                     break;
                 case 2:
-                    Login login = new Login();
-                    login.login();
-                    if (AUTHENTICATED) {
-                        LoggedInWindow loggedInWindow = new LoggedInWindow();
-                        loggedInWindow.windowLogic();
-                    }
+                    System.out.println();
+                    printCentered("Calculating Calorie...");
                     break;
                 case 3:
                     quitWindow = true;
