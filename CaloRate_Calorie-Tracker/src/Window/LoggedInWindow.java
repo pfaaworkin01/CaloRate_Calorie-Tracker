@@ -1,5 +1,7 @@
 package Window;
 
+import Calorie.CalorieManager;
+
 import static Global.Global.*;
 
 public class LoggedInWindow extends Window {
@@ -7,8 +9,8 @@ public class LoggedInWindow extends Window {
     @Override
     void windowInterface() {
         windowTitle = "Logged In as \"" + LOGGED_IN_USERNAME + "\"";
-        numberOfWindowOptions = 3;
-        windowOptionTexts = "User Data:Calculate Calorie:Go Back";
+        numberOfWindowOptions = 4;
+        windowOptionTexts = "User Data:Calculate Calorie:Check Food List:Log Out";
         super.windowInterface();
     }
 
@@ -38,9 +40,15 @@ public class LoggedInWindow extends Window {
                     break;
                 case 2:
                     System.out.println();
-                    printCentered("Calculating Calorie...");
+                    CalorieManager calorieManager = new CalorieManager();
+                    calorieManager.calculateCalorie();
                     break;
                 case 3:
+                    System.out.println();
+//                    FoodList foodList = new FoodList();
+//                    foodList.showList();
+                    break;
+                case 4:
                     quitWindow = true;
                     break;
                 default:

@@ -1,0 +1,22 @@
+Baked Potato:173:212
+Mashed Potato:250:231
+Mashed Potato (Milk & Butter):250:184
+Sweet Potato:150:174
+Broccoli:350:119
+Cabbage:200:61
+Capsicum:45:18
+Carrot:60:23
+Cauliflower:200:56
+Chickpeas:240:363
+Cucumber:150:21
+Eggplant:300:59
+Garlic:3:4
+Mushrooms:150:37
+Apple:150:96
+Banana:120:111
+Dates:24:70
+Grapes:5:4
+Jackfruit:400:318
+Lemon:65:25
+Lime:67:32
+Orange:160:75

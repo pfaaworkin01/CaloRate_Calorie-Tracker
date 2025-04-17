@@ -95,4 +95,82 @@ public class UserDataManager {
 
         return Double.parseDouble(String.format("%.2f", BMR));
     }
+
+    public double getBMR() {
+        double BMR = 0.00;
+        try (BufferedReader reader = new BufferedReader(new FileReader(USER_DATA))) {
+            String line;
+            boolean dataFound = false;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+
+                if (parts[0].equals(LOGGED_IN_USERNAME)) {
+                    dataFound = true;
+                    if (parts.length == 8) {
+                        BMR = Double.parseDouble(parts[7]);
+                    } else {
+                        printCentered("Data format is invalid. Please update your data.", YELLOW_TEXT);
+                    }
+                    break;
+                }
+            }
+
+            if (!dataFound) {
+                printCentered("No data found for the current user.", YELLOW_TEXT);
+            }
+        } catch (IOException e) {
+            printCentered("Error reading user data. Please try again.", RED_TEXT);
+        }
+
+        return BMR;
+    }
+
+    public double getActivityFactor() {
+        double activityFactor = 0.00;
+        try (BufferedReader reader = new BufferedReader(new FileReader(USER_DATA))) {
+            String line;
+            boolean dataFound = false;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+
+                if (parts[0].equals(LOGGED_IN_USERNAME)) {
+                    dataFound = true;
+                    if (parts.length == 8) {
+                        switch(parts[5]) {
+                            case "S":
+                                activityFactor = 1.2;
+                                break;
+                            case "L":
+                                activityFactor = 1.375;
+                                break;
+                            case "M":
+                                activityFactor = 1.55;
+                                break;
+                            case "V":
+                                activityFactor = 1.725;
+                                break;
+                            case "E":
+                                activityFactor = 1.9;
+                                break;
+                            default:
+                                printCentered("Invalid activity level. Please update your data.", YELLOW_TEXT);
+                        }
+                    } else {
+                        printCentered("Data format is invalid. Please update your data.", YELLOW_TEXT);
+                    }
+                    break;
+                }
+            }
+
+            if (!dataFound) {
+                printCentered("No data found for the current user.", YELLOW_TEXT);
+            }
+        } catch (IOException e) {
+            printCentered("Error reading user data. Please try again.", RED_TEXT);
+        }
+
+        return activityFactor;
+    }
 }
