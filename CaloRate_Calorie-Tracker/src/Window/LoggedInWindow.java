@@ -1,6 +1,7 @@
 package Window;
 
 import Calorie.CalorieManager;
+import Food.FoodList;
 
 import static Global.Global.*;
 
@@ -45,8 +46,8 @@ public class LoggedInWindow extends Window {
                     break;
                 case 3:
                     System.out.println();
-//                    FoodList foodList = new FoodList();
-//                    foodList.showList();
+                    FoodList foodList = new FoodList();
+                    foodList.showList();
                     break;
                 case 4:
                     quitWindow = true;
